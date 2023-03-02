@@ -3,7 +3,7 @@
 
 <div class="row">
   <div class="col">
-    <form (ngSubmit)="guardar()" #myFormulario="ngForm">
+    <form (ngSubmit)="guardar(miFormulario)" #miFormulario="ngForm">
       <!-- campo de producto -->
       <div class="mb-3 row">
         <label class="col-sm-3 col-form-label">Producto</label>
@@ -12,8 +12,19 @@
             type="text"
             class="form-control"
             placeholder="Nombre del producto"
+            ngModel
+            name="producto"
+            required
+            minlength="3"
           />
-          <span class="form-text text-danger">Debe de ser de 3 letras</span>
+          <span
+            class="form-text text-danger"
+            *ngIf="
+              miFormulario.controls['producto']?.invalid &&
+              miFormulario.controls['producto']?.touched
+            "
+            >Debe de ser de 3 letras</span
+          >
         </div>
       </div>
 
@@ -25,6 +36,9 @@
             type="number"
             class="form-control"
             placeholder="Precio del producto"
+            ngModel
+            name="precio"
+            required
           />
         </div>
       </div>
@@ -37,6 +51,8 @@
             type="number"
             class="form-control"
             placeholder="Existencias del producto"
+            ngModel
+            name="existencias"
           />
         </div>
       </div>
@@ -49,5 +65,20 @@
         </div>
       </div>
     </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <span>Valid</span>
+    <pre>{{ miFormulario.valid }}</pre>
+    <span>Pristine</span>
+    <pre>{{ miFormulario.pristine | json }}</pre>
+
+    <span>Touched</span>
+    <pre>{{ miFormulario.touched | json }}</pre>
+
+    <span>Value</span>
+    <pre>{{ miFormulario.value | json }}</pre>
   </div>
 </div>

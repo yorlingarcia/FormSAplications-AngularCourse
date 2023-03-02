@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-basicos',
@@ -6,7 +7,8 @@ import { Component } from '@angular/core';
   styles: [],
 })
 export class BasicosComponent {
-  guardar() {
+  guardar(miFormulario: NgForm) {
     console.log('submit enviado');
+    console.log(miFormulario.value);
   }
 }

@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 
 interface Persona {
   nombre: string;
-  favoritos: Favorito;
+  favoritos: Favorito[];
 }
 
 interface Favorito {
@@ -17,17 +17,19 @@ interface Favorito {
   styles: [],
 })
 export class DinamicosComponent {
-  @ViewChild('miFormulario') miFormulario!: NgForm;
-
   guardar() {
     console.log('Formulario posteado');
-    console.log(this.miFormulario);
   }
 
-  nombreValido() {
-    return (
-      this.miFormulario?.controls['nombre']?.errors &&
-      this.miFormulario?.controls['nombre']?.touched
-    );
+  persona: Persona = {
+    nombre: 'Yorlin',
+    favoritos: [
+      { id: 1, nombre: 'Metal Gear' },
+      { id: 2, nombre: 'Death Stranding' },
+    ],
+  };
+
+  eliminar(index: number) {
+    this.persona.favoritos.splice(index, 1);
   }
 }

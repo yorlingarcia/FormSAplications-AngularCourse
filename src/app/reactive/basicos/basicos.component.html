@@ -3,7 +3,7 @@
 
 <div class="row">
   <div class="col">
-    <form>
+    <form [formGroup]="miFormulario">
       <!-- campo de producto -->
       <div class="mb-3 row">
         <label class="col-sm-3 col-form-label">Producto</label>
@@ -11,10 +11,8 @@
           <input
             type="text"
             class="form-control"
+            formControlName="nombre"
             placeholder="Nombre del producto"
-            name="producto"
-            required
-            minlength="3"
           />
           <span class="form-text text-danger">Debe de ser de 3 letras</span>
         </div>
@@ -28,9 +26,7 @@
             type="number"
             class="form-control"
             placeholder="Precio del producto"
-            name="precio"
-            required
-            min="0"
+            formControlName="precio"
           />
           <span class="form-text text-danger"
             >El precio debe de ser 0 o mayor</span
@@ -46,9 +42,7 @@
             type="number"
             class="form-control"
             placeholder="Existencias del producto"
-            name="existencias"
-            customMin
-            required
+            formControlName="existencias"
           />
         </div>
       </div>
@@ -64,7 +58,7 @@
   </div>
 </div>
 
-<!-- <div class="row">
+<div class="row">
   <div class="col">
     <span>Valid</span>
     <pre>{{ miFormulario.valid }}</pre>
@@ -76,8 +70,5 @@
 
     <span>Value</span>
     <pre>{{ miFormulario.value | json }}</pre>
-
-    <span>CustomDirectives</span>
-    <pre>{{ miFormulario.controls["existencias"]?.errors | json }}</pre>
   </div>
-</div> -->
+</div>

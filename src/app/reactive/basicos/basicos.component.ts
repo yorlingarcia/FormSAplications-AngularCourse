@@ -20,8 +20,8 @@ export class BasicosComponent {
 
   miFormulario: FormGroup = this.fb.group({
     nombre: ['Manzana', [Validators.required, Validators.minLength(3)]],
-    precio: [0],
-    existencias: [0],
+    precio: [0, [Validators.required, Validators.min(0)]],
+    existencias: [0, [Validators.required, Validators.min(0)]],
   });
 
   constructor(private fb: FormBuilder) {}

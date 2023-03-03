@@ -16,7 +16,6 @@ export class BasicosComponent {
   };
 
   guardar() {
-    console.log(this.miFormulario);
     console.log('Posteo Correcto');
     this.miFormulario.resetForm({
       precio: 0,

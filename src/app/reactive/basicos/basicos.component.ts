@@ -19,7 +19,7 @@ export class BasicosComponent {
   // });
 
   miFormulario: FormGroup = this.fb.group({
-    nombre: ['Manzana', Validators.required],
+    nombre: ['Manzana', [Validators.required, Validators.minLength(3)]],
     precio: [0],
     existencias: [0],
   });

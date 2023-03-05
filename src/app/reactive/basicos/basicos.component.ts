@@ -27,7 +27,7 @@ export class BasicosComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.miFormulario.setValue({
+    this.miFormulario.reset({
       nombre: 'Manzana',
       precio: 1500,
       existencias: 2,

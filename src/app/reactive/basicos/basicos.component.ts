@@ -39,5 +39,6 @@ export class BasicosComponent {
       return;
     }
     console.log(this.miFormulario.value);
+    this.miFormulario.reset();
   }
 }

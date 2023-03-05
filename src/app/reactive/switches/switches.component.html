@@ -1,7 +1,7 @@
 <h2>Reactive: <small>Switches</small></h2>
 <hr />
 
-<form>
+<form [formGroup]="miFormulario" (ngSubmit)="guardar()">
   <!-- Radios -->
   <div class="row mb-3">
     <label class="col-sm-3 col-form-label">Genero</label>
@@ -10,10 +10,9 @@
         <input
           type="radio"
           class="form-check-input"
-          name="flexRadioDefault"
           id="radioMasculino"
           value="M"
-          required
+          formControlName="genero"
         />
         <label class="form-check-label" for="radioMasculino">Masculino</label>
       </div>
@@ -22,10 +21,9 @@
         <input
           type="radio"
           class="form-check-input"
-          name="flexRadioDefault"
           id="radioFemenino"
           value="F"
-          required
+          formControlName="genero"
         />
         <label class="form-check-label" for="radioFemenino">Femenino</label>
       </div>
@@ -42,7 +40,7 @@
           type="checkbox"
           role="switch"
           id="flexSwitchCheckChecked"
-          name="notificaciones"
+          formControlName="notificaciones"
         />
         <label class="form-check-label" for="flexSwitchCheckChecked"
           >Quiero recibir notificaciones</label
@@ -61,8 +59,7 @@
           type="checkbox"
           value=""
           id="flexCheckDefault"
-          name="terminos"
-          required
+          formControlName="condiciones"
         />
         <label class="form-check-label" for="flexCheckDefault">
           Terminos y condiciones
@@ -74,12 +71,12 @@
   <!-- Boton submit -->
   <div class="row">
     <div class="col">
-      <button class="btn btn-primary float-end">Guardar</button>
+      <button type="submit" class="btn btn-primary float-end">Guardar</button>
     </div>
   </div>
 </form>
 
-<!-- <h5>Valor del formulario</h5>
+<h5>Valor del formulario</h5>
 <pre>{{ miFormulario.value | json }}</pre>
 <br />
 <h5>Persona</h5>
@@ -88,7 +85,7 @@
 <h5>Valid</h5>
 <pre>{{ miFormulario.valid }}</pre>
 <br />
-<h5>Terminos y condiciones</h5>
+<!-- <h5>Terminos y condiciones</h5>
 <pre>{{ miFormulario.controls["terminos"]?.errors | json }}</pre>
 <br />
 <pre>Condiciones: </pre> -->

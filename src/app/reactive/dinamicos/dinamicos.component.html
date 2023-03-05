@@ -1,7 +1,7 @@
 <h2>Reactive: <small>Dinamicos</small></h2>
 <hr />
 
-<form>
+<form [formGroup]="miFormulario" (ngSubmit)="guardar()">
   <!-- nombre -->
   <div class="mb-3 row">
     <label class="col-sm-3 col-form-label">Nombre</label>
@@ -10,10 +10,11 @@
         type="text"
         class="form-control"
         placeholder="Nombre..."
-        required
-        name="nombre"
+        formControlName="nombre"
       />
-      <span class="form-text text-danger">Ingrese un nombre valido</span>
+      <span class="form-text text-danger" *ngIf="campoValido('nombre')"
+        >Ingrese un nombre valido</span
+      >
     </div>
   </div>
 
@@ -26,7 +27,6 @@
           type="text"
           class="form-control"
           placeholder="Agregar favorito"
-          name="nuevoJuego"
         />
         <button class="btn btn-outline-primary" type="button">Agregar</button>
       </div>
@@ -38,7 +38,7 @@
     <label class="col-sm-3 col-form-label">Favoritos</label>
     <div class="col-sm-9">
       <div class="input-group mb-1">
-        <input class="form-control mb-1" required />
+        <input class="form-control mb-1" />
         <button type="button" class="btn btn-outline-danger float-end">
           Eliminar
         </button>
@@ -48,7 +48,7 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <button type="button" class="btn btn-primary float-end">Guardar</button>
+      <button type="submit" class="btn btn-primary float-end">Guardar</button>
     </div>
   </div>
 </form>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -11,7 +11,7 @@ import {
   templateUrl: './basicos.component.html',
   styles: [],
 })
-export class BasicosComponent {
+export class BasicosComponent implements OnInit {
   // miFormulario: FormGroup = new FormGroup({
   //   nombre: new FormControl('Manzana'),
   //   precio: new FormControl('1500'),
@@ -25,6 +25,14 @@ export class BasicosComponent {
   });
 
   constructor(private fb: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.miFormulario.setValue({
+      nombre: 'Manzana',
+      precio: 1500,
+      existencias: 2,
+    });
+  }
 
   campoValido(campo: string) {
     return (

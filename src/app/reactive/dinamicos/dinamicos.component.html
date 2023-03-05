@@ -36,9 +36,12 @@
   <!-- Lista de juegos favoritos -->
   <div class="mb-3 row">
     <label class="col-sm-3 col-form-label">Favoritos</label>
-    <div class="col-sm-9">
-      <div class="input-group mb-1">
-        <input class="form-control mb-1" />
+    <div class="col-sm-9" formArrayName="favoritos">
+      <div
+        class="input-group mb-1"
+        *ngFor="let favorito of favoritosArr.controls; let i = index"
+      >
+        <input class="form-control mb-1" [formControlName]="i" />
         <button type="button" class="btn btn-outline-danger float-end">
           Eliminar
         </button>
@@ -53,5 +56,10 @@
   </div>
 </form>
 
+<span>Valid</span>
+<pre>{{ miFormulario.valid }}</pre>
+
+<span>Value</span>
+<pre>{{ miFormulario.value | json }}</pre>
 <!-- <span>Persona</span>
 <pre>{{ persona | json }}</pre> -->

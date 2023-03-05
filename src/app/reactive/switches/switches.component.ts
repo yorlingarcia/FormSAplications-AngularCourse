@@ -26,9 +26,9 @@ export class SwitchesComponent implements OnInit {
     //  .get('condiciones')
     //  ?.valueChanges.subscribe((newValue) => console.log(newValue));
 
-    this.miFormulario.valueChanges.subscribe((form) => {
-      delete form.condiciones;
-      this.persona = form;
+    this.miFormulario.valueChanges.subscribe(({ condiciones, ...rest }) => {
+      //delete form.condiciones;
+      this.persona = rest;
     });
   }
 

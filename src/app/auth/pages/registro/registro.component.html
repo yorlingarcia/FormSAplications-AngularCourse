@@ -1,1 +1,82 @@
-<p>registro works!</p>
+<h2>Validaciones Reactivas</h2>
+<hr />
+<div class="row">
+  <div class="col">
+    <form
+      autocomplete="off"
+      [formGroup]="miFormulario"
+      (ngSubmit)="submitFormulario()"
+    >
+      <!-- nombre -->
+      <div class="row mb-3">
+        <label for="" class="col-sm-3 col-form-label">Nombre</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="nombre"
+            placeholder="Nombre del usuario"
+          />
+          <span *ngIf="campoNoValido('nombre')" class="form-text text-danger">
+            Debe de ser en formato de nombre y apellido
+          </span>
+        </div>
+      </div>
+      <!-- Email -->
+      <div class="row mb-3">
+        <label for="" class="col-sm-3 col-form-label">Email</label>
+        <div class="col-sm-9">
+          <input
+            type="email"
+            class="form-control"
+            placeholder="Email del usuario"
+          />
+        </div>
+      </div>
+      <!-- Username -->
+      <div class="row mb-3">
+        <label for="" class="col-sm-3 col-form-label">UserName</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Nombre codigo del usuario"
+          />
+        </div>
+      </div>
+      <!-- password -->
+      <div class="row mb-3">
+        <label for="" class="col-sm-3 col-form-label">Password</label>
+        <div class="col-sm-9">
+          <input
+            type="password"
+            class="form-control"
+            placeholder="password de su cuenta"
+          />
+        </div>
+      </div>
+      <!-- password confirmacion-->
+      <div class="row mb-3">
+        <label for="" class="col-sm-3 col-form-label">Confirmar Password</label>
+        <div class="col-sm-9">
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Confirmar la contraseña"
+          />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-primary float-end" type="submit">Crear</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<h2>Form valid: {{ miFormulario.valid }}</h2>
+
+<h2>Nombre</h2>
+<pre>{{ miFormulario.controls["nombre"].errors | json }}</pre>

@@ -30,7 +30,11 @@
             type="email"
             class="form-control"
             placeholder="Email del usuario"
+            formControlName="email"
           />
+          <span *ngIf="campoNoValido('email')" class="form-text text-danger">
+            El correo es obligatorio
+          </span>
         </div>
       </div>
       <!-- Username -->
@@ -41,6 +45,7 @@
             type="text"
             class="form-control"
             placeholder="Nombre codigo del usuario"
+            formControlName="userName"
           />
         </div>
       </div>
@@ -80,3 +85,9 @@
 
 <h2>Nombre</h2>
 <pre>{{ miFormulario.controls["nombre"].errors | json }}</pre>
+
+<h2>Email</h2>
+<pre>{{ miFormulario.controls["email"].errors | json }}</pre>
+
+<h2>UserName</h2>
+<pre>{{ miFormulario.controls["userName"].errors | json }}</pre>

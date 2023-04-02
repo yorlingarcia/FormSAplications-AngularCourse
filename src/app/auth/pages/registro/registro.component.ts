@@ -1,25 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  emailPattern,
+  nombreApellidoPattern,
+  noPuedeSerStrider,
+} from 'src/app/shared/validator/validaciones';
 
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
 })
 export class RegistroComponent implements OnInit {
-  nombreApellidoPattern: string = '([a-zA-Z]+) ([a-zA-Z]+)';
-  emailPattern: string = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
-
-  noPuedeSerStrider(argumento: any) {
-    console.log(argumento);
-  }
-
   miFormulario: FormGroup = this.fb.group({
     nombre: [
       '',
-      [Validators.required, Validators.pattern(this.nombreApellidoPattern)],
+      [Validators.required, Validators.pattern(nombreApellidoPattern)],
     ],
-    email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
-    userName: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.pattern(emailPattern)]],
+    userName: ['', [Validators.required, noPuedeSerStrider]],
   });
 
   constructor(private fb: FormBuilder) {}
@@ -30,6 +28,7 @@ export class RegistroComponent implements OnInit {
     this.miFormulario.reset({
       nombre: 'Yorlin Garcia',
       email: 'test@test.com',
+      userName: 'YorlinGarcia',
     });
   }
 

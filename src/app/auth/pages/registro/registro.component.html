@@ -47,6 +47,9 @@
             placeholder="Nombre codigo del usuario"
             formControlName="userName"
           />
+          <span *ngIf="campoNoValido('userName')" class="form-text text-danger">
+            El usuario no puede ser strider
+          </span>
         </div>
       </div>
       <!-- password -->

@@ -5,6 +5,7 @@ import {
   nombreApellidoPattern,
   noPuedeSerStrider,
 } from 'src/app/shared/validator/validaciones';
+import { ValidatorService } from 'src/app/shared/validator/validator.service';
 
 @Component({
   selector: 'app-registro',
@@ -14,13 +15,16 @@ export class RegistroComponent implements OnInit {
   miFormulario: FormGroup = this.fb.group({
     nombre: [
       '',
-      [Validators.required, Validators.pattern(nombreApellidoPattern)],
+      [Validators.required, Validators.pattern(this.vs.nombreApellidoPattern)],
     ],
-    email: ['', [Validators.required, Validators.pattern(emailPattern)]],
-    userName: ['', [Validators.required, noPuedeSerStrider]],
+    email: [
+      '',
+      [Validators.required, Validators.pattern(this.vs.emailPattern)],
+    ],
+    userName: ['', [Validators.required, this.vs.noPuedeSerStrider]],
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private vs: ValidatorService) {}
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.

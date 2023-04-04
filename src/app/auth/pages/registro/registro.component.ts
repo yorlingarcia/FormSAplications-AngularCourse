@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ValidatorService } from 'src/app/shared/validator/validator.service';
 import { EmailValidatorService } from '../../../shared/validator/email-validator.service';
+import { emailPattern } from '../../../shared/validator/validaciones';
 
 @Component({
   selector: 'app-registro',
@@ -31,6 +32,18 @@ export class RegistroComponent implements OnInit {
     }
   );
 
+  get emailErrorMsg(): string {
+    const errors = this.miFormulario.get('email')?.errors;
+    if (errors?.['required']) {
+      return 'El email es obligatorio';
+    } else if (errors?.['pattern']) {
+      return 'el valor ingresado no tiene formato de correo';
+    } else if (errors?.['emailTomado']) {
+      return 'El correo ya ha sido tomado';
+    }
+    return '';
+  }
+
   constructor(
     private fb: FormBuilder,
     private vs: ValidatorService,
@@ -59,24 +72,5 @@ export class RegistroComponent implements OnInit {
   submitFormulario() {
     console.log(this.miFormulario);
     this.miFormulario.markAllAsTouched();
-  }
-
-  emailRequired() {
-    return (
-      this.miFormulario.get('email')?.errors?.['required'] &&
-      this.miFormulario.get('email')?.touched
-    );
-  }
-  emailFormato() {
-    return (
-      this.miFormulario.get('email')?.errors?.['pattern'] &&
-      this.miFormulario.get('email')?.touched
-    );
-  }
-  emailTomado() {
-    return (
-      this.miFormulario.get('email')?.errors?.['emailTomado'] &&
-      this.miFormulario.get('email')?.touched
-    );
   }
 }
